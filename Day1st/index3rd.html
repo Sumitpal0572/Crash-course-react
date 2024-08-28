@@ -13,7 +13,10 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
 
-        const app = () => {
+        const App = () => {
+            const handleButton = () => {
+                alert("Hello")
+            }
             return (
                 <>
                     <p>React is a javacript Library</p>
@@ -27,6 +30,9 @@
 
         }
 
+
+        const root = ReactDOM.createRoot(document.getElementById("root"))
+        root.render(<App />)
     </script>
 </body>
 
