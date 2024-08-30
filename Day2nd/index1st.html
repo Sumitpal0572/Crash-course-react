@@ -15,14 +15,19 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
 
-    const Greetings = () => {
+    const Greetings = ({ message, name }) => {
         return (
             <>
-            
-            
+                <p> {message}{name}</p>
             </>
         )
     }
+
+
+    ReactDOM.render(
+        <Greetings message="Hello" name="Alice" />,
+        document.getElementById('root')
+    );
 </script>
 
 </html>
