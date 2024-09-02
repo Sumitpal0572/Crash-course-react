@@ -15,30 +15,29 @@
     <script type="text/babel">
         // Your ItemList component code will go here
 
-        function Gallery({ children }) {
-            return
-            <div className="gallery">
-                {children}
-            </div>
-
+        const Gallery = ({ children }) => {
+            return (
+                <div className="gallery">
+                    {children}
+                </div>
+            )
         }
 
         const App = () => {
             return (
-                <div>
-                    <Gallery>
-                        <Image src="image1.jpg" />
-                        <Image src="image2.jpg" />
-                    </Gallery>
-                </div>
+
+                <Gallery>
+                    <img src="https://images.unsplash.com/photo-1619197250569-1d112d60d26b?q=80&w=1438&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                    <img src="https://plus.unsplash.com/premium_photo-1675705690586-3d35326e4771?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                </Gallery>
+
             )
         }
 
 
 
-
         const root = ReactDOM.createRoot(document.getElementById("root"))
-        root.render(<Gallery />)
+        root.render(<App />)
     </script>
 </body>
 
