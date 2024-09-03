@@ -5,6 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Components in React</title>
+    <style>
+        .step-list {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-card {
+            display: inline-block;
+            width: 150px;
+            margin: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f0f4f8;
+            text-align: center;
+        }
+
+        .number {
+            display: inline-block;
+            width: 40px;
+            height: 30px;
+            border-radius: 20%;
+            background-color: #e0f7ef;
+            color: #000;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .discription {
+            color: #7d8b99;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,12 +50,12 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
 
-        const Cards = ({ number, title, discription }) => {
+        const Cards = ({ number, title, description }) => {
             return (
                 <div className='step-card'>
                     <div className='number'>{number}</div>
                     <div className='title'>{title}</div>
-                    <div className='discription'>{discription}</div>
+                    <div className='description'>{description}</div>
                 </div>
             )
         }
@@ -49,9 +85,9 @@
             return (
                 <div className='step-list'>
                     <h2>Getting Started in 3 easy steps</h2>
-                    {steps.map((step, index) => {
+                    {steps.map((step, index) => (
                         <Cards key={index} {...step} />
-                    })}
+                    ))}
                 </div>
             )
 
