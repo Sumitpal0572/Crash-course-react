@@ -20,19 +20,46 @@
                     <div className='number'>{number}</div>
                     <div className='title'>{title}</div>
                     <div className='discription'>{discription}</div>
-
                 </div>
             )
         }
 
+        const Steplist = () => {
+            const steps = [
+                {
+                    number: "01",
+                    title: "Find your template",
+                    description:
+                        "Every template is embedded within an iframe, so you can easily check what they look like and test the responsive behaviour.",
+                },
+                {
+                    number: "02",
+                    title: "Copy the code",
+                    description:
+                        "Click the code tab to see the actual source code of the template. Copy and paste it into your project and adjust it to your needs.",
+                },
+                {
+                    number: "03",
+                    title: "Enjoy your free time",
+                    description:
+                        "You've just saved yourself a bunch of time not building the same stuff over and over again. Enjoy your free time, and build business features.",
+                },
+            ];
 
+            return (
+                <div className='step-list'>
+                    <h2>Getting Started in 3 easy steps</h2>
+                    {steps.map((step, index) => {
+                        <Cards key={index} {...step} />
+                    })}
+                </div>
+            )
+
+        }
 
 
         const App = () => {
-            return (
-                <div>
-                </div>
-            )
+            return <Steplist />
         }
 
         const root = ReactDOM.createRoot(document.getElementById("root"))
