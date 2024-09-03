@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components in React</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+
+        const Cards = ({ number, title, discription }) => {
+            return (
+                <div className='step-card'>
+                    <div className='number'>{number}</div>
+                    <div className='title'>{title}</div>
+                    <div className='discription'>{discription}</div>
+
+                </div>
+            )
+        }
+
+
+
+
+        const App = () => {
+            return (
+                <div>
+                </div>
+            )
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("root"))
+        root.render(<App />)
+
+
+    </script>
+</body>
+
+</html>
