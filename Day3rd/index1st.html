@@ -5,6 +5,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Template</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .greetings-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .greeting-card {
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            width: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .greeting-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .greeting-card h2 {
+            color: #333;
+            margin: 0 0 10px;
+        }
+
+        .greeting-card p {
+            color: #555;
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
@@ -45,8 +90,8 @@
         )
     }
 
-    const root=ReactDOM.createRoot(document.getElementById("root"))
-    root.render(<App/>)
+    const root = ReactDOM.createRoot(document.getElementById("root"))
+    root.render(<App />)
 </script>
 
 </html>
