@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+   
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    function Quiz() {
+        const questions = [
+            {
+                questionText: `What is Capital of India?`,
+                answerOptions: [
+                    { answerText: 'Bangladesh', isCorrect: false },
+                    { answerText: 'Bengalore', isCorrect: false },
+
+                    { answerText: 'Delhi', isCorrect: true },
+                    { answerText: 'Lucknow', isCorrect: false },
+
+                ],
+            },
+            {
+                questionText: `Who is the Prime Minister of India?`,
+                answerOptions: [
+                    { answerText: 'Rajnath Singh', isCorrect: false },
+                    { answerText: 'Amit Shah', isCorrect: false },
+                    { answerText: 'Narendra Modi', isCorrect: true },
+                    { answerText: 'Yogi', isCorrect: false },
+
+                ],
+            },
+
+            {
+                questionText: 'Who is CEO of Tesla?',
+                answerOptions: [
+                    { answerText: 'Jeff Bezos', isCorrect: false },
+                    { answerText: 'Elon Musk', isCorrect: true },
+                    { answerText: 'Bill Gates', isCorrect: false },
+                    { answerText: 'Tony Stark', isCorrect: false },
+                ],
+            },
+
+
+            {
+                questionText: 'The iPhone was created by which company?',
+                answerOptions: [
+                    { answerText: 'Apple', isCorrect: true },
+                    { answerText: 'Intel', isCorrect: false },
+                    { answerText: 'Amazon', isCorrect: false },
+                    { answerText: 'Microsoft', isCorrect: false },
+                ],
+            },
+
+        ]
+
+        const [currentQuestion, setcurrentQuestion] = React.useState(0);
+        const [score, setScore] = React.useState(0);
+        const [showScore, setshowScore] = React.useState(false);
+
+        const handleclickoption = (isCorrect) => {
+            if (isCorrect) {
+                setScore(score + 1)
+            }
+
+            const nextQuestion = currentQuestion + 1;
+            if (nextQuestion < questions.length) {
+                setcurrentQuestion(nextQuestion)
+            } else {
+                setshowScore(true);
+            }
+        };
+
+        return (
+            <div className="quiz-app">
+                {showScore ? (
+                    <div className="score-section">
+                        You scored {score} out of {questions.length}
+                    </div>
+                ) : (
+                    <>
+                        <div className="question-section">
+                            <div className="question-count">
+                                <span>Question {currentQuestion + 1}</span>/{questions.length}
+                            </div>
+                            <div className="question-text">{questions[currentQuestion].questionText}</div>
+                        </div>
+                        <div className="answer-section">
+                            {questions[currentQuestion].answerOptions.map((answerOption, index) => (
+                                <button key={index} onClick={() => handleclickoption(answerOption.isCorrect)}>
+                                    {answerOption.answerText}
+                                </button>
+                            ))}
+                        </div>
+                    </>
+                )}
+            </div>
+        );
+
+    }
+
+
+
+
+
+
+    // Render the Quiz component to the DOM
+    ReactDOM.render(<Quiz />, document.getElementById('root'));
+
+</script>
+
+</html>
