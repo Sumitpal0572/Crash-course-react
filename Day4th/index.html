@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile </title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    // Your  code will go here
+
+    function Userprofile() {
+        const [profile, setprofile] = React.useState({
+            name: "",
+            age: "",
+            hobbies: [''],
+        });
+
+        const handleChanges = (e) => {
+            const { name, value } = e.target;
+            setprofile({
+                ...profile,
+                [name]: value
+            });
+        }
+
+        const handleHobbyChanges = (index, event) => {
+            const newhobbies = profile.hobbies.map((hobby, hobbyindex) => {
+                if (index == hobbyindex) {
+                    return event.target.value;
+                }
+                return hobby
+            })
+            setprofile({
+                ...profile,
+                hobbies: newhobbies
+            })
+        };
+
+        const addHobby = () => {
+            setprofile({
+                ...profile,
+                hobbies: [...profile.hobbies, ""]
+            })
+        };
+
+        const removeHobby = (index) => {
+            setprofile({
+                ...profile,
+                hobbies: profile.hobbies.filter((hobby, hobbyindex) => index !== hobbyindex)
+            })
+        }
+
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            console.log(profile)
+        }
+
+
+        return (
+            <div>
+                <h2>User Profile</h2>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Name: </label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={profile.name}
+                            onChange={handleChanges}
+                        />
+                    </div>
+                    <div>
+                        <label>Age: </label>
+                        <input
+                            type="number"
+                            name="age"
+                            value={profile.age}
+                            onChange={handleChanges}
+                        />
+                    </div>
+                    <div>
+                        <label>Hobbies: </label>
+                        {profile.hobbies.map((hobby, index) => (
+                            <div key={index}>
+                                <input
+                                    type="text"
+                                    value={hobby}
+                                    onChange={(event) => handleHobbyChanges(index, event)}
+                                />
+                                <button type="button" onClick={() => removeHobby(index)}>Remove</button>
+                            </div>
+                        ))}
+                        <button type="button" onClick={addHobby}>Add Hobby</button>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+
+                <h3>Profile Preview</h3>
+                <p>Name: {profile.name}</p>
+                <p>Age: {profile.age}</p>
+                <p>Hobbies:</p>
+                <ul>
+                    {profile.hobbies.map((hobby, index) => (
+                        <li key={index}>{hobby}</li>
+                    ))}
+                </ul>
+            </div>
+        );
+    }
+
+    ReactDOM.render(<Userprofile />, document.getElementById('root'));
+
+</script>
+
+</html>
