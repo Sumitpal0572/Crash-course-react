@@ -51,6 +51,7 @@
   padding: 5px;
   margin: 5px;
   border: solid #0c242baa;
+  cursor: pointer;
 }
 
 .input-field {
