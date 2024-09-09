@@ -31,7 +31,7 @@ const Weather = () => {
       return;
     }
     try {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=matric&appid=${
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${
         import.meta.env.VITE_APP_ID
       }`;
 
@@ -90,7 +90,7 @@ const Weather = () => {
             <div className="col">
               <img src={wind_icon} alt="" />
               <div>
-                <p>{weatherData.speed}km/h</p>
+                <p>{weatherData.windSpeed}km/h</p>
                 <span>Wind Speed</span>
               </div>
             </div>
