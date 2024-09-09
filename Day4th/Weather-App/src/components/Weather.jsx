@@ -1,39 +1,104 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Weather.css";
+import search_icon from "../assets/Assets/search.png";
+import clear_icon from "../assets/Assets/clear.png";
+import drizzle_icon from "../assets/Assets/drizzle.png";
+import humidity_icon from "../assets/Assets/humidity.png";
+import rain_icon from "../assets/Assets/rain.png";
+import wind_icon from "../assets/Assets/wind.png";
+import snow_icon from "../assets/Assets/snow.png";
 
 const Weather = () => {
+  const inputRef = useRef();
+  const [weatherData, setWeatherData] = useState(false);
+
+  const allIcons = {
+    "01d": clear_icon,
+    "01n": clear_icon,
+    // "02d": cloud_icon,
+    // "02n": cloud_icon,
+    "04d": drizzle_icon,
+    "04n": drizzle_icon,
+    "09n": rain_icon,
+    "10d": rain_icon,
+    "13d": rain_icon,
+    "13n": rain_icon,
+  };
+
   const search = async (city) => {
+    if (city === "") {
+      alert("Enter city name");
+      return;
+    }
     try {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=matric&appid=${
         import.meta.env.VITE_APP_ID
       }`;
 
       const response = await fetch(url);
       const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.message);
+        return;
+      }
       console.log(data);
-    } catch (error) {}
+
+      console.log(data.main.humidity);
+      console.log(data.main.temp);
+      const icon = allIcons[data.weather[0].icon] || clear_icon;
+      setWeatherData({
+        humidity: data.main.humidity,
+        windSpeed: data.wind.speed,
+        temperature: Math.floor(data.main.temp),
+        location: data.name,
+        icon: icon,
+      });
+    } catch (error) {
+      setWeatherData(false);
+      console.error("Error in fetaching data");
+    }
   };
 
   useEffect(() => {
     search("London");
-  });
+  }, []);
 
   return (
     <div className="weather">
       <div className="search-bar">
-        <input type="text" placeholder="Search city" />
+        <input ref={inputRef} type="text" placeholder="Search" />
+        <img
+          src={search_icon}
+          alt=""
+          onClick={() => search(inputRef.current.value)}
+        />
       </div>
-      <p className="temperature">50 C</p>
-      <p className="location">London</p>
-      <div className="col">
-        <p>91%</p>
-        <span>Humidity</span>
-      </div>
-
-      <div className="col">
-        <p>3.6</p>
-        <span>Wind Speed</span>
-      </div>
+      {weatherData ? (
+        <>
+          <img src={weatherData.icon} alt="" className="weather-icon" />
+          <p className="temperature">{weatherData.temperature}&deg;C</p>
+          <p className="location">{weatherData.location}</p>
+          <div className="weather-data">
+            <div className="col">
+              <img src={humidity_icon} alt="" />
+              <div>
+                <p>{weatherData.humidity}</p>
+                <span>Humidity</span>
+              </div>
+            </div>
+            <div className="col">
+              <img src={wind_icon} alt="" />
+              <div>
+                <p>{weatherData.speed}km/h</p>
+                <span>Wind Speed</span>
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
