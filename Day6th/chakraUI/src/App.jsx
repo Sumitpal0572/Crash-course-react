@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { Box, Heading, Button, Input, Text, VStack } from "@chakra-ui/react";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  const appTitle = "My Chakra UI Application";
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Box
+      p={5}
+      maxW="600px"
+      mx="auto"
+      mt={10}
+      borderWidth="1px"
+      borderRadius="lg"
+    >
+      <Heading as="h1" size="xl" mb={4}>
+        First UI using Chakra
+      </Heading>
 
-export default App
+      <Input placeholder="Enter something..." mb={4} />
+
+      <Button colorScheme="blue" mb={4}>
+        Submit
+      </Button>
+
+      <VStack
+        p={4}
+        borderWidth="1px"
+        borderRadius="lg"
+        spacing={4}
+        align="stretch"
+      >
+        <Text fontSize="md">
+          This is a simple card component built with Chakra UI's Box and Text
+          components.
+        </Text>
+        <Button colorScheme="teal">Click Me</Button>
+      </VStack>
+    </Box>
+  );
+};
+
+export default App;
